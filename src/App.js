@@ -4,47 +4,40 @@ import InputForm from "./components/InputForm";
 import ExpenseList from "./components/ExpenseList";
 import ResultBoard from "./components/ResultBoard";
 
-const expenseItem = {
-  list: [],
+const emptyExpenseObj = {
+  list: [], // List of expense items
   henrik: 0,
   ida: 0,
 };
 
 const App = () => {
-  const [expenseObj, setExpenseObj] = useState(expenseItem);
+  const [expenseObj, setExpenseObj] = useState(emptyExpenseObj);
 
-  const addExpense = (expense) => {
-    const newItem = {
-      list: [...expenseObj.list, expense],
-      henrik: getExpensesForHenrik([...expenseObj.list, expense]),
-      ida: getExpensesForIda([...expenseObj.list, expense]),
+  const addExpense = (expenseItem) => {
+    const newList = [...expenseObj.list, expenseItem];
+
+    const newExpenseObj = {
+      list: newList,
+      henrik: getExpensesForPerson("Henrik", newList),
+      ida: getExpensesForPerson("Ida", newList),
     };
 
-    setExpenseObj(newItem);
+    setExpenseObj(newExpenseObj);
   };
 
-  const getExpensesForHenrik = (expenses) => {
-    return expenses
-      .filter((e) => e.person === "Henrik")
-      .map((e) => e.cost * e.compensation)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  };
-
-  const getExpensesForIda = (expenses) => {
-    return expenses
-      .filter((e) => e.person === "Ida")
+  const getExpensesForPerson = (person, listOfExpenseItems) => {
+    return listOfExpenseItems
+      .filter((e) => e.person === person)
       .map((e) => e.cost * e.compensation)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   };
 
   const clear = (e) => {
-    const clearedItem = {
+    setExpenseObj({
       list: [],
       henrik: 0,
       ida: 0,
-    };
-
-    setExpenseObj(clearedItem);
+    });
   };
 
   return (
