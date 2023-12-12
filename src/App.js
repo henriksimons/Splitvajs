@@ -4,40 +4,52 @@ import InputForm from "./components/InputForm";
 import ExpenseList from "./components/ExpenseList";
 import ResultBoard from "./components/ResultBoard";
 
-const emptyExpenseObj = {
-  list: [], // List of expense items
-  henrik: 0,
-  ida: 0,
-};
-
 const App = () => {
-  const [expenseObj, setExpenseObj] = useState(emptyExpenseObj);
+  const [expenseObj, setExpenseObj] = useState({
+    list: [], // List of expense items
+    repaymentHenrik: 0,
+    repaymentIda: 0,
+  });
 
   const addExpense = (expenseItem) => {
     const newList = [...expenseObj.list, expenseItem];
 
     const newExpenseObj = {
       list: newList,
-      henrik: getExpensesForPerson("Henrik", newList),
-      ida: getExpensesForPerson("Ida", newList),
+      repaymentHenrik: getRepayment("Henrik", newList),
+      repaymentIda: getRepayment("Ida", newList),
     };
 
     setExpenseObj(newExpenseObj);
+    console.log(expenseObj);
   };
 
-  const getExpensesForPerson = (person, listOfExpenseItems) => {
+  const getRepayment = (person, listOfExpenseItems) => {
     return listOfExpenseItems
       .filter((e) => e.person === person)
-      .map((e) => e.cost * e.compensation)
+      .map((e) => e.cost * e.repayment)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   };
 
   const clear = (e) => {
     setExpenseObj({
       list: [],
-      henrik: 0,
-      ida: 0,
+      repaymentHenrik: 0,
+      repaymentIda: 0,
     });
+  };
+
+  const removeItem = (expenseItem) => {
+    const updatedList = expenseObj.list.filter((e) => !equals(e, expenseItem));
+    setExpenseObj({
+      list: updatedList,
+      repaymentHenrik: getRepayment("Henrik", updatedList),
+      repaymentIda: getRepayment("Ida", updatedList),
+    });
+  };
+
+  const equals = (e1, e2) => {
+    return e1.id === e2.id;
   };
 
   return (
@@ -46,11 +58,14 @@ const App = () => {
         <InputForm onExpenseSubmit={addExpense}></InputForm>
         <hr></hr>
         <ResultBoard
-          henrikRepayment={expenseObj.henrik}
-          idaRepayment={expenseObj.ida}
+          repaymentHenrik={expenseObj.repaymentHenrik}
+          repaymentIda={expenseObj.repaymentIda}
         ></ResultBoard>
         <hr></hr>
-        <ExpenseList listOfExpenses={expenseObj.list}></ExpenseList>
+        <ExpenseList
+          listOfExpenses={expenseObj.list}
+          onItemRemoval={removeItem}
+        ></ExpenseList>
         <div className="row">
           <div className="col-12">
             <button type="button" className="btn btn-danger" onClick={clear}>
