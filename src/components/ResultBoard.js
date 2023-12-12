@@ -16,27 +16,27 @@ const ResultBoard = (props) => {
     }
   };
 
-  const payer = getPayer(props.idaRepayment, props.henrikRepayment);
-  const diff = getDiff(props.idaRepayment, props.henrikRepayment);
+  const payer = getPayer(props.repaymentIda, props.repaymentHenrik);
+  const diff = getDiff(props.repaymentIda, props.repaymentHenrik);
 
   const getMessage = (payer, diff) => {
     if (payer === "Ingen") {
       return "Jämt ut!";
     }
     if (payer === "Henrik") {
-      return "Henrik för över " + diff + " till Ida";
+      return "Henrik för över " + diff + " kr till Ida";
     }
     if (payer === "Ida") {
-      return "Ida för över " + diff + " till Henrik";
+      return "Ida för över " + diff + " kr till Henrik";
     }
   };
 
   return (
     <div className="row">
       <div className="col-3">
-        Henrik får tillbaka: {props.henrikRepayment} kr
+        Henrik får tillbaka: {props.repaymentHenrik} kr
       </div>
-      <div className="col-3">Ida får tillbaka: {props.idaRepayment} kr</div>
+      <div className="col-3">Ida får tillbaka: {props.repaymentIda} kr</div>
       {<div className="col-3">{getMessage(payer, diff)}</div>}
     </div>
   );
