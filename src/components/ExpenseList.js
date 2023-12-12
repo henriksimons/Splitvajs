@@ -12,17 +12,27 @@ const ExpenseList = (props) => {
               <th scope="col">Utläggare</th>
               <th scope="col">Ersättning</th>
               <th scope="col">Återbetalning</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {expenses.map((e) => {
               return (
-                <tr key={e.expense + Math.random()}>
-                  <td>{e.expense}</td>
+                <tr key={e.id}>
+                  <td>{e.name}</td>
                   <td>{e.cost} kr</td>
                   <td>{e.person}</td>
-                  <td>{e.compensation * 100}%</td>
-                  <td>{e.cost * e.compensation} kr</td>
+                  <td>{e.repayment * 100}%</td>
+                  <td>{e.cost * e.repayment} kr</td>
+                  <td>
+                    <button
+                      type="btn"
+                      className="btn btn-outline-danger"
+                      onClick={(event) => props.onItemRemoval(e)}
+                    >
+                      Ta bort
+                    </button>
+                  </td>
                 </tr>
               );
             })}
