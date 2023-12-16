@@ -55,13 +55,12 @@ const App = () => {
   return (
     <>
       <div className="container">
-        <InputForm onExpenseSubmit={addExpense}></InputForm>
-        <hr></hr>
         <ResultBoard
           repaymentHenrik={expenseObj.repaymentHenrik}
           repaymentIda={expenseObj.repaymentIda}
         ></ResultBoard>
         <hr></hr>
+        <InputForm onExpenseSubmit={addExpense}></InputForm>
         <ExpenseList
           listOfExpenses={expenseObj.list}
           onItemRemoval={removeItem}

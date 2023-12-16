@@ -32,7 +32,7 @@ const ResultBoard = (props) => {
   };
 
   return (
-    <div className="row">
+    <div className="row mt-2">
       <div className="col-3">
         Henrik får tillbaka: {props.repaymentHenrik} kr
       </div>

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useForm } from "react";
 
 const InputForm = (props) => {
+  
+
   const [id, setId] = useState(0);
   const [repayment, setRepayment] = useState(0.5);
   const [cost, setCost] = useState(0);
   const [name, setName] = useState("");
-  const [person, setPerson] = useState("");
+  const [person, setPerson] = useState("Henrik");
 
-  const submitForm = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
 
     const item = {
@@ -44,7 +46,7 @@ const InputForm = (props) => {
       <div className="row">
         <div className="col-5">
           <h1>Kostnadsformulär</h1>
-          <form onSubmit={submitForm}>
+          <form onSubmit={onSubmit}>
             <div className="form-group mt-2">
               <label htmlFor="expense">Utgiftspost</label>
               <input
@@ -68,49 +70,36 @@ const InputForm = (props) => {
               ></input>
             </div>
             <div className="form-group mt-2">
-              <label htmlFor="repayment">Ange ersättningsgrad</label>
-              <select
-                className="form-control"
-                id="repayment"
-                name="repayment"
-                onChange={handleRepayment}
-                value={repayment}
-              >
-                <option value="0.5">50%</option>
-                <option value="1">100%</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label className="col-12 mb-1 mt-2">Utläggare</label>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="henrik"
-                  name="flexRadioDefault"
-                  onClick={handlePerson}
-                  type="radio"
-                  value="Henrik"
-                ></input>
-                <label className="form-check-label" htmlFor="henrik">
-                  Henrik
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  id="ida"
-                  name="flexRadioDefault"
-                  onClick={handlePerson}
-                  type="radio"
-                  value="Ida"
-                ></input>
-                <label className="form-check-label" htmlFor="ida">
-                  Ida
-                </label>
+              <div className="form-row">
+                <label htmlFor="repayment">Ange ersättningsgrad</label>
+                <select
+                  className="form-control"
+                  id="repayment"
+                  name="repayment"
+                  onChange={handleRepayment}
+                  value={repayment}
+                >
+                  <option value="0.5">50%</option>
+                  <option value="1">100%</option>
+                </select>
               </div>
             </div>
-            <button type="submit" className="btn btn-success mt-2">
+            <div className="form-group mt-2">
+              <div className="form-row">
+                <label htmlFor="person">Utläggare</label>
+                <select
+                  className="form-control"
+                  id="person"
+                  name="person"
+                  onChange={handlePerson}
+                  value={person}
+                >
+                  <option value="Henrik">Henrik</option>
+                  <option value="Ida">Ida</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" className="btn btn-primary mt-2">
               Lägg till
             </button>
           </form>
