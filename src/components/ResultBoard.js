@@ -24,10 +24,10 @@ const ResultBoard = (props) => {
       return "Jämt ut!";
     }
     if (payer === "Henrik") {
-      return "Henrik för över " + diff + " kr till Ida";
+      return "Henrik för över " + diff + " kr till Ida.";
     }
     if (payer === "Ida") {
-      return "Ida för över " + diff + " kr till Henrik";
+      return "Ida för över " + diff + " kr till Henrik.";
     }
   };
 
@@ -41,7 +41,7 @@ const ResultBoard = (props) => {
           Ida får tillbaka: {props.repaymentIda} kr
         </div>
         <div className="col-3 align-self-center">
-          <h3>{getMessage(payer, diff)}.</h3>
+          <h3>{getMessage(payer, diff)}</h3>
         </div>
       </div>
     </div>

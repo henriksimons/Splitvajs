@@ -46,8 +46,13 @@ const InputForm = (props) => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h1>Kostnadsformulär</h1>
-              <form onSubmit={onSubmit}>
+              <h2>Kostnadsformulär</h2>
+            </div>
+          </div>
+
+          <form onSubmit={onSubmit}>
+            <div className="row">
+              <div className="col-6 text-left">
                 <div className="form-group mt-2">
                   <label htmlFor="expense">Utgiftspost</label>
                   <input
@@ -59,6 +64,11 @@ const InputForm = (props) => {
                     type="text"
                   ></input>
                 </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-left">
                 <div className="form-group mt-2">
                   <label htmlFor="cost">Kostnad</label>
                   <input
@@ -70,6 +80,11 @@ const InputForm = (props) => {
                     type="text"
                   ></input>
                 </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-left">
                 <div className="form-group mt-2">
                   <div className="form-row">
                     <label htmlFor="repayment">Ange ersättningsgrad</label>
@@ -85,6 +100,11 @@ const InputForm = (props) => {
                     </select>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-6 text-left">
                 <div className="form-group mt-2">
                   <div className="form-row">
                     <label htmlFor="person">Utläggare</label>
@@ -100,13 +120,17 @@ const InputForm = (props) => {
                     </select>
                   </div>
                 </div>
+              </div>
+            </div>
 
+            <div className="row">
+              <div className="col-6">
                 <button type="submit" className="btn btn-primary mt-2">
                   Lägg till
                 </button>
-              </form>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
