@@ -1,7 +1,19 @@
 import { styles } from "./ExpenseList.css";
 
 const ExpenseList = (props) => {
-  const expenses = props.listOfExpenses;
+  const expensesByCost = props.listOfExpenses.sort((a, b) => a.cost - b.cost);
+  const expensesByName = props.listOfExpenses.sort((a, b) => {
+    const n1 = a.cost;
+    const n2 = b.cost;
+    if (n1 < n2) {
+      return -1;
+    }
+    if (n1 > n2) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <>
       <div className="container">
@@ -23,7 +35,7 @@ const ExpenseList = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {expenses.map((e) => {
+                {props.listOfExpenses.map((e) => {
                   return (
                     <tr key={e.id}>
                       <td>{e.name}</td>
