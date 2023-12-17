@@ -3,6 +3,7 @@ import "./App.css";
 import InputForm from "./components/InputForm";
 import ExpenseList from "./components/ExpenseList";
 import ResultBoard from "./components/ResultBoard";
+import Header from "./components/Header";
 
 const App = () => {
   const [expenseObj, setExpenseObj] = useState({
@@ -52,10 +53,22 @@ const App = () => {
     return e1.id === e2.id;
   };
 
+  let removeButton;
+  if (expenseObj.list.length > 0) {
+    removeButton = (
+      <button type="button" className="btn btn-danger" onClick={clear}>
+        Rensa
+      </button>
+    );
+  } else {
+  }
+
   return (
     <>
       <div className="splitvise">
         <div className="container">
+          <Header headerText="Splitvise"></Header>
+          <hr></hr>
           <ResultBoard
             repaymentHenrik={expenseObj.repaymentHenrik}
             repaymentIda={expenseObj.repaymentIda}
@@ -67,11 +80,7 @@ const App = () => {
             onItemRemoval={removeItem}
           ></ExpenseList>
           <div className="row">
-            <div className="col-12">
-              <button type="button" className="btn btn-danger" onClick={clear}>
-                Rensa
-              </button>
-            </div>
+            <div className="col-12 text-center">{removeButton}</div>
           </div>
         </div>
       </div>

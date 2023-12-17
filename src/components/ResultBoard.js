@@ -32,12 +32,18 @@ const ResultBoard = (props) => {
   };
 
   return (
-    <div className="row mt-2">
-      <div className="col-3">
-        Henrik får tillbaka: {props.repaymentHenrik} kr
+    <div className="container">
+      <div className="row mt-2">
+        <div className="col-3 align-self-center">
+          Henrik får tillbaka: {props.repaymentHenrik} kr
+        </div>
+        <div className="col-3 align-self-center">
+          Ida får tillbaka: {props.repaymentIda} kr
+        </div>
+        <div className="col-3 align-self-center">
+          <h3>{getMessage(payer, diff)}.</h3>
+        </div>
       </div>
-      <div className="col-3">Ida får tillbaka: {props.repaymentIda} kr</div>
-      {<div className="col-3">{getMessage(payer, diff)}</div>}
     </div>
   );
 };
