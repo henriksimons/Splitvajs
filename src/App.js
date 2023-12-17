@@ -54,22 +54,24 @@ const App = () => {
 
   return (
     <>
-      <div className="container">
-        <ResultBoard
-          repaymentHenrik={expenseObj.repaymentHenrik}
-          repaymentIda={expenseObj.repaymentIda}
-        ></ResultBoard>
-        <hr></hr>
-        <InputForm onExpenseSubmit={addExpense}></InputForm>
-        <ExpenseList
-          listOfExpenses={expenseObj.list}
-          onItemRemoval={removeItem}
-        ></ExpenseList>
-        <div className="row">
-          <div className="col-12">
-            <button type="button" className="btn btn-danger" onClick={clear}>
-              Rensa
-            </button>
+      <div className="splitvise">
+        <div className="container">
+          <ResultBoard
+            repaymentHenrik={expenseObj.repaymentHenrik}
+            repaymentIda={expenseObj.repaymentIda}
+          ></ResultBoard>
+          <hr></hr>
+          <InputForm onExpenseSubmit={addExpense}></InputForm>
+          <ExpenseList
+            listOfExpenses={expenseObj.list}
+            onItemRemoval={removeItem}
+          ></ExpenseList>
+          <div className="row">
+            <div className="col-12">
+              <button type="button" className="btn btn-danger" onClick={clear}>
+                Rensa
+              </button>
+            </div>
           </div>
         </div>
       </div>
