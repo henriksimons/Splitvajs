@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Splitvajs/static/css/main.d83c034c.css",
+    "main.js": "/Splitvajs/static/js/main.caf99ef7.js",
+    "static/js/787.113d5f9b.chunk.js": "/Splitvajs/static/js/787.113d5f9b.chunk.js",
+    "static/media/ng90uweas9hpvaeehcrs.avif": "/Splitvajs/static/media/ng90uweas9hpvaeehcrs.8be1964833728d5eaede.avif",
+    "index.html": "/Splitvajs/index.html",
+    "main.d83c034c.css.map": "/Splitvajs/static/css/main.d83c034c.css.map",
+    "main.caf99ef7.js.map": "/Splitvajs/static/js/main.caf99ef7.js.map",
+    "787.113d5f9b.chunk.js.map": "/Splitvajs/static/js/787.113d5f9b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d83c034c.css",
+    "static/js/main.caf99ef7.js"
+  ]
+}
