@@ -1,4 +1,4 @@
-import picture from "C:/Users/h3nke/Splitvajs/src/ng90uweas9hpvaeehcrs.avif";
+import picture from "../ng90uweas9hpvaeehcrs.avif";
 import { styles } from "./Header.css";
 
 const Header = (props) => {
