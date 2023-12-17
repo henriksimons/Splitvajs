@@ -1,0 +1,13 @@
+.expense {
+  color: red;
+  display: inline;
+  font-size: large;
+  font-weight: bold;
+}
+
+.repayment {
+  color: #21e065;
+  display: inline;
+  font-size: large;
+  font-weight: bold;
+}

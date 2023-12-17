@@ -1,4 +1,5 @@
 import picture from "C:/Users/h3nke/Splitvajs/src/ng90uweas9hpvaeehcrs.avif";
+import { styles } from "./Header.css";
 
 const Header = (props) => {
   const headerText = props.headerText;
@@ -6,11 +7,11 @@ const Header = (props) => {
     <>
       <div className="container">
         <div className="row">
-        <div className="col-2">
+          <div className="col-4">
             <img className="header-img" src={picture} alt="Logo" />
           </div>
-          <div className="col-10 align-self-center">
-            <h1>{headerText}</h1>
+          <div className="col-8 align-self-center">
+            <div className="app-name">{headerText}</div>
           </div>
         </div>
       </div>

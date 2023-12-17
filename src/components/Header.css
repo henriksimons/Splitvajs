@@ -1,4 +1,10 @@
-div {
-  text-align: left;
+.app-name {
+  color: #black;
+  font-weight: bold;
+  font-size: 5em;
 }
 
+.header-img {
+  width: 100%;
+  object-fit: cover;
+}
