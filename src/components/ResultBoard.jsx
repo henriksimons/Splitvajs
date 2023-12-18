@@ -58,7 +58,7 @@ const ResultBoard = ({
         </div>
       </div>
       <div className="row mt-2">
-        <div className="col-12 text-center align-self-center">
+        <div className="col-12 text-left align-self-center">
           <h3>{getMessage(payer, diff)}</h3>
         </div>
       </div>

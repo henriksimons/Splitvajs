@@ -24,3 +24,8 @@
   background-color: #1db954;
   font-size: bold;
 }
+
+h2 {
+  background-color: rgba(144, 238, 144, 0.288);
+  padding: 0.2em;
+}

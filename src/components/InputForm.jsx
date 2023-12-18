@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { styles } from "./InputForm.css"
+import { styles } from "./InputForm.css";
 
 const InputForm = (props) => {
   const options = ["Henrik", "Ida"];
@@ -55,9 +55,7 @@ const InputForm = (props) => {
                   <p className="errorMsg">Ange ett namn på utgiften</p>
                 )}
               </div>
-            </div>
 
-            <div className="row">
               <div className="col-6 text-left">
                 <label className="my-2" htmlFor="cost">
                   Kostnad
@@ -96,9 +94,7 @@ const InputForm = (props) => {
                   )}
                 </div>
               </div>
-            </div>
 
-            <div className="row">
               <div className="col-6 text-left">
                 <div className="form-row">
                   <label className="my-2" htmlFor="person">
@@ -126,7 +122,7 @@ const InputForm = (props) => {
             </div>
 
             <div className="row">
-              <div className="col-6">
+              <div className="col-12 mt-3 text-left">
                 <button type="submit" className="submit-btn mt-2">
                   Lägg till
                 </button>

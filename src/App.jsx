@@ -53,7 +53,7 @@ const App = () => {
   };
 
   const removeItem = (expenseEvent) => {
-    console.log(expenseEvent)
+    console.log(expenseEvent);
     const updatedList = balance.list.filter((e) => e.id !== expenseEvent.id);
 
     console.log(updatedList);
@@ -65,7 +65,6 @@ const App = () => {
       totalIda: getTotal("Ida", updatedList),
     });
   };
-
 
   let removeButton;
   if (balance.list.length > 0) {

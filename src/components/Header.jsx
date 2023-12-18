@@ -7,10 +7,7 @@ const Header = (props) => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-4">
-            <img className="header-img" src={picture} alt="Logo" />
-          </div>
-          <div className="col-8 align-self-center">
+          <div className="col-12 align-self-center text-left">
             <div className="app-name">{headerText}</div>
           </div>
         </div>
