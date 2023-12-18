@@ -1,5 +1,5 @@
-import picture from "../ng90uweas9hpvaeehcrs.avif";
-import { styles } from "./Header.css";
+
+import "./Header.css";
 
 const Header = (props) => {
   const headerText = props.headerText;

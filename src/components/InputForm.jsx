@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { styles } from "./InputForm.css";
+import "./InputForm.css";
 
 const InputForm = (props) => {
   const options = ["Henrik", "Ida"];
@@ -120,9 +120,8 @@ const InputForm = (props) => {
                 </div>
               </div>
             </div>
-
             <div className="row">
-              <div className="col-12 mt-3 text-left">
+              <div className="col-16 mt-2 text-left">
                 <button type="submit" className="submit-btn mt-2">
                   Lägg till
                 </button>

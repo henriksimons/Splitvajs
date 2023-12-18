@@ -1,4 +1,4 @@
-import { styles } from "./ResultBoard.css";
+import "./ResultBoard.css";
 
 const ResultBoard = ({
   repaymentIda,
@@ -40,7 +40,7 @@ const ResultBoard = ({
 
   return (
     <div className="container">
-      <div className="row text-left">
+      <div className="row text-center">
         <div className="col-6">
           Henriks total utlägg: <div className="expense">{totalHenrik}</div> kr.
         </div>
@@ -49,7 +49,7 @@ const ResultBoard = ({
           <div className="repayment">{repaymentHenrik}</div> kr.
         </div>
       </div>
-      <div className="row text-left">
+      <div className="row text-center">
         <div className="col-6">
           Idas total utlägg: <div className="expense">{totalIda}</div> kr.
         </div>
@@ -58,7 +58,7 @@ const ResultBoard = ({
         </div>
       </div>
       <div className="row mt-2">
-        <div className="col-12 text-left align-self-center">
+        <div className="col-12 text-center align-self-center">
           <h3>{getMessage(payer, diff)}</h3>
         </div>
       </div>
