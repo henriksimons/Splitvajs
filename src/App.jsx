@@ -5,97 +5,35 @@ import ExpenseList from "./components/ExpenseList";
 import ResultBoard from "./components/ResultBoard";
 import Header from "./components/Header";
 
-const App = () => {
-  const pingUrl = "https://splitvajs.fly.dev/v2/ping";
+// TODO lägg till det fejkade itemet till listan för att undvika fördröjning.
 
+const App = () => {
   const [sortBy, setSortBy] = useState("0");
 
   const [addedItems, setAddedItems] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch("https://splitvajs.fly.dev/v2/expenses")
+      .then((response) => response.json())
+      .then((json) => setItems(json));
+  }, [addedItems]);
 
   const addItem = (item) => {
     setAddedItems([...addedItems, item]);
   };
 
-  const [balance, setBalance] = useState({
-    list: [], // List of expense items
-    repaymentHenrik: 0,
-    repaymentIda: 0,
-    totalHenrik: 0,
-    totalIda: 0,
-  });
-
-  useEffect(() => {
-    const fetchMessage = async () => {
-      const response = await fetch(pingUrl);
-      const message = await response.text();
-      console.log(message);
-    };
-
-    fetchMessage();
-  }, []);
-
-  const addExpense = (expenseEvent) => {
-    const newList = [...balance.list, expenseEvent];
-
-    const updatedBalance = {
-      list: newList,
-      repaymentHenrik: getRepayment("Henrik", newList),
-      repaymentIda: getRepayment("Ida", newList),
-      totalHenrik: getTotal("Henrik", newList),
-      totalIda: getTotal("Ida", newList),
-    };
-
-    setBalance(updatedBalance);
-  };
-
   const handleSortBy = (e) => {
-    console.log("SortBy change registered in App.jsx: " + e.target.value);
     setSortBy(e.target.value);
   };
 
-  const getRepayment = (person, list) => {
-    return list
-      .filter((e) => e.person === person)
-      .map((e) => e.cost * e.repayment)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0.0);
-  };
-
-  const getTotal = (person, list) => {
-    return list
-      .filter((e) => e.person === person)
-      .map((e) => e.cost * 1)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0.0);
-  };
-
-  const clear = (e) => {
-    setBalance({
-      list: [],
-      repaymentHenrik: 0,
-      totalHenrik: 0,
-      repaymentIda: 0,
-      totalIda: 0,
-    });
-  };
-
-  const removeItem = (expenseEvent) => {
-    const updatedList = balance.list.filter((e) => e.id !== expenseEvent.id);
-    setBalance({
-      list: updatedList,
-      repaymentHenrik: getRepayment("Henrik", updatedList),
-      repaymentIda: getRepayment("Ida", updatedList),
-      totalHenrik: getTotal("Henrik", updatedList),
-      totalIda: getTotal("Ida", updatedList),
-    });
-  };
-
   let removeButton;
-  if (balance.list.length > 0) {
+  if (items.length > 0) {
     removeButton = (
-      <button type="button" className="remove-btn" onClick={clear}>
+      <button type="button" className="remove-btn">
         Rensa
       </button>
     );
-  } else {
   }
 
   return (
@@ -104,18 +42,12 @@ const App = () => {
         <div className="container">
           <Header headerText="Splitvajs"></Header>
           <hr></hr>
-          <ResultBoard
-            repaymentHenrik={balance.repaymentHenrik}
-            repaymentIda={balance.repaymentIda}
-            totalHenrik={balance.totalHenrik}
-            totalIda={balance.totalIda}
-          ></ResultBoard>
+          <ResultBoard></ResultBoard>
           <hr></hr>
-          <InputForm onExpenseSubmit={addExpense} onFormSubmit={addItem}></InputForm>
+          <InputForm onFormSubmit={addItem}></InputForm>
           <ExpenseList
+            items={items}
             handleSortBy={handleSortBy}
-            listOfExpenses={balance.list}
-            onItemRemoval={removeItem}
             sortBy={sortBy}
           ></ExpenseList>
           <div className="row">

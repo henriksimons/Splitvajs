@@ -1,20 +1,14 @@
 import "./ExpenseList.css";
 import { useState } from "react";
 
-const ExpenseList = ({
-  listOfExpenses,
-  onItemRemoval,
-}) => {
-  
+const ExpenseList = ({ items }) => {
   const [sort, setSort] = useState("0");
-
-  console.log("Sort :" + sort);
 
   const doSort = (a, b) => {
     if (sort === "1") {
-      return a.cost - b.cost; //Kostnad fallande
+      return a.value - b.value; //Kostnad fallande
     } else if (sort === "2") {
-      return b.cost - a.cost; // Kostnad stigande
+      return b.value - a.value; // Kostnad stigande
     } else if (sort === "3") {
       return compareNameAsc(a, b);
     } else if (sort === "4") {
@@ -58,7 +52,6 @@ const ExpenseList = ({
                   <th scope="col">Kostnad</th>
                   <th scope="col">Utläggare</th>
                   <th scope="col">Ersättning</th>
-                  <th scope="col">Återbetalning</th>
                   <th scope="col">
                     <select
                       className="form-select form-select-sm"
@@ -76,22 +69,17 @@ const ExpenseList = ({
                 </tr>
               </thead>
               <tbody>
-                {listOfExpenses
+                {items
                   .sort((a, b) => doSort(a, b))
                   .map((e) => {
                     return (
                       <tr key={e.id}>
                         <td>{e.name}</td>
-                        <td>{e.cost} kr</td>
-                        <td>{e.person}</td>
-                        <td>{e.repayment * 100}%</td>
-                        <td>{e.cost * e.repayment} kr</td>
+                        <td>{e.value} kr</td>
+                        <td>{e.payerId}</td>
+                        <td>{e.split}</td>
                         <td>
-                          <button
-                            type="btn"
-                            className="btn btn-outline-danger"
-                            onClick={(event) => onItemRemoval(e)}
-                          >
+                          <button type="btn" className="btn btn-outline-danger">
                             Ta bort
                           </button>
                         </td>

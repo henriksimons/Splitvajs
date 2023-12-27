@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./InputForm.css";
+import { post } from "../HttpClient";
 
-const InputForm = ({ onExpenseSubmit, onFormSubmit }) => {
+const InputForm = ({ onFormSubmit }) => {
   const options = ["Henrik", "Ida"];
 
   const {
@@ -11,26 +12,17 @@ const InputForm = ({ onExpenseSubmit, onFormSubmit }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-
+  const onSubmit = (formData) => {
     const item = {
-      name: data.name,
-      cost: data.cost,
-      payer: data.payer,
-      split: data.split,
+      name: formData.name,
+      cost: formData.cost,
+      payer: formData.payer,
+      split: formData.split,
     };
 
     onFormSubmit(item);
 
-    const httpPostRequestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(item),
-    };
-
-    fetch("https://splitvajs.fly.dev/v2/expense", httpPostRequestOptions)
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    post("https://splitvajs.fly.dev/v2/expense", item);
   };
 
   return (
