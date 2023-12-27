@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import InputForm from "./components/InputForm";
 import ExpenseList from "./components/ExpenseList";
@@ -6,7 +6,10 @@ import ResultBoard from "./components/ResultBoard";
 import Header from "./components/Header";
 
 const App = () => {
+  const pingUrl = "https://splitvajs.fly.dev/v2/ping";
+
   const [sortBy, setSortBy] = useState("0");
+
   const [balance, setBalance] = useState({
     list: [], // List of expense items
     repaymentHenrik: 0,
@@ -14,6 +17,16 @@ const App = () => {
     totalHenrik: 0,
     totalIda: 0,
   });
+
+  useEffect(() => {
+    const fetchMessage = async () => {
+      const response = await fetch(pingUrl);
+      const message = await response.text();
+      console.log(message);
+    };
+
+    fetchMessage();
+  }, []);
 
   const addExpense = (expenseEvent) => {
     const newList = [...balance.list, expenseEvent];

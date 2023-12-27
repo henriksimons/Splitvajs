@@ -3,10 +3,9 @@ import { useState } from "react";
 
 const ExpenseList = ({
   listOfExpenses,
-  handleSortBy,
-  sortBy,
   onItemRemoval,
 }) => {
+  
   const [sort, setSort] = useState("0");
 
   console.log("Sort :" + sort);
