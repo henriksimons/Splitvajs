@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./InputForm.css";
 
-const InputForm = (props) => {
+const InputForm = ({ onExpenseSubmit, onFormSubmit }) => {
   const options = ["Henrik", "Ida"];
-
-  const [id, setId] = useState(1);
 
   const {
     register,
@@ -14,17 +12,25 @@ const InputForm = (props) => {
   } = useForm();
 
   const onSubmit = (data) => {
+
     const item = {
-      id: id,
       name: data.name,
       cost: data.cost,
-      person: data.person,
-      repayment: data.repayment,
+      payer: data.payer,
+      split: data.split,
     };
 
-    setId(id + 1);
+    onFormSubmit(item);
 
-    props.onExpenseSubmit(item);
+    const httpPostRequestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+    };
+
+    fetch("https://splitvajs.fly.dev/v2/expense", httpPostRequestOptions)
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
 
   return (
@@ -77,41 +83,41 @@ const InputForm = (props) => {
             <div className="row">
               <div className="col-6 text-left">
                 <div className="form-row">
-                  <label className="my-2" htmlFor="repayment">
-                    Ange ersättningsgrad
+                  <label className="my-2" htmlFor="split">
+                    Ange kostandsfördelning
                   </label>
                   <select
-                    {...register("repayment", { required: true })}
+                    {...register("split", { required: true })}
                     className="form-control"
-                    id="repayment"
-                    label="repayment"
+                    id="split"
+                    label="split"
                   >
-                    <option value="0.5">50%</option>
-                    <option value="1">100%</option>
+                    <option value="EQUAL">Jämt</option>
+                    <option value="FULL">Fullt</option>
                   </select>
-                  {errors.repayment && errors.repayment.type === "required" && (
-                    <p className="errorMsg">Ange ersättningsprocent.</p>
+                  {errors.split && errors.split.type === "required" && (
+                    <p className="errorMsg">Ange kostandsfördelning.</p>
                   )}
                 </div>
               </div>
 
               <div className="col-6 text-left">
                 <div className="form-row">
-                  <label className="my-2" htmlFor="person">
+                  <label className="my-2" htmlFor="payer">
                     Utläggare
                   </label>
                   <select
-                    {...register("person", { required: true })}
+                    {...register("payer", { required: true })}
                     className="form-control"
-                    id="person"
-                    label="person"
+                    id="payer"
+                    label="payer"
                   >
                     {options.map((value) => (
                       <option value={value} key={value}>
                         {value}
                       </option>
                     ))}
-                    {errors.person && errors.person.type === "required" && (
+                    {errors.payer && errors.payer.type === "required" && (
                       <p className="errorMsg">
                         Ange vem som var utläggsansvarig.
                       </p>

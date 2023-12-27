@@ -10,6 +10,12 @@ const App = () => {
 
   const [sortBy, setSortBy] = useState("0");
 
+  const [addedItems, setAddedItems] = useState([]);
+
+  const addItem = (item) => {
+    setAddedItems([...addedItems, item]);
+  };
+
   const [balance, setBalance] = useState({
     list: [], // List of expense items
     repaymentHenrik: 0,
@@ -105,7 +111,7 @@ const App = () => {
             totalIda={balance.totalIda}
           ></ResultBoard>
           <hr></hr>
-          <InputForm onExpenseSubmit={addExpense}></InputForm>
+          <InputForm onExpenseSubmit={addExpense} onFormSubmit={addItem}></InputForm>
           <ExpenseList
             handleSortBy={handleSortBy}
             listOfExpenses={balance.list}
