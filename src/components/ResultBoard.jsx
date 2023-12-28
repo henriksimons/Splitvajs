@@ -42,9 +42,9 @@ const ResultBoard = ({ onRefresh }) => {
             return (
               <tr key={result.personId}>
                 <td>{result.personName}</td>
-                <td>{result.totalExpenses}</td>
-                <td>{result.totalDebt}</td>
-                <td>{result.balance}</td>
+                <td>{result.totalExpenses} kr</td>
+                <td>{result.totalDebt} kr</td>
+                <td>{result.balance} kr</td>
               </tr>
             );
           })}
