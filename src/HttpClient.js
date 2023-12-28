@@ -1,11 +1,6 @@
-export const post = (url, item) => {
-  const httpPostRequestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(item),
+export const executeDeleteRequest = (url) => {
+  const httpRequestOptions = {
+    method: "DELETE",
   };
-
-  fetch(url, httpPostRequestOptions).then(
-    (response) => response.json()
-  );
-};
+  fetch(url, httpRequestOptions);
+}  

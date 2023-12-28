@@ -1,7 +1,7 @@
 import "./ExpenseList.css";
 import { useState } from "react";
 
-const ExpenseList = ({ items }) => {
+const ExpenseList = ({ items, onRemoval }) => {
   const [sort, setSort] = useState("0");
 
   const doSort = (a, b) => {
@@ -58,11 +58,10 @@ const ExpenseList = ({ items }) => {
                       onChange={(e) => setSort(e.target.value)}
                     >
                       <option value="0">Sortera efter</option>
-                      <option value="1">Pris fallande</option>
-                      <option value="2">Pris stigande</option>
+                      <option value="1">Pris stigande</option>
+                      <option value="2">Pris fallande</option>
                       <option value="3">Namn A-Ö</option>
                       <option value="4">Namn Ö-A</option>
-                      <option value="5">Insättningsordning</option>
                     </select>
                   </th>
                   <th></th>
@@ -71,15 +70,19 @@ const ExpenseList = ({ items }) => {
               <tbody>
                 {items
                   .sort((a, b) => doSort(a, b))
-                  .map((e) => {
+                  .map((expense) => {
                     return (
-                      <tr key={e.id}>
-                        <td>{e.name}</td>
-                        <td>{e.value} kr</td>
-                        <td>{e.payerId}</td>
-                        <td>{e.split}</td>
+                      <tr key={expense.expenseId}>
+                        <td>{expense.name}</td>
+                        <td>{expense.value} kr</td>
+                        <td>{expense.payerName}</td>
+                        <td>{expense.split}%</td>
                         <td>
-                          <button type="btn" className="btn btn-outline-danger">
+                          <button
+                            type="btn"
+                            className="btn btn-outline-danger"
+                            onClick={(e) => onRemoval(expense.expenseId)}
+                          >
                             Ta bort
                           </button>
                         </td>
