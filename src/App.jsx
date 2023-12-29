@@ -4,9 +4,7 @@ import InputForm from "./components/InputForm";
 import ExpenseList from "./components/ExpenseList";
 import ResultBoard from "./components/ResultBoard";
 import Header from "./components/Header";
-import { executeDeleteRequest } from "./HttpClient";
 
-// TODO lägg till det fejkade itemet till listan för att undvika fördröjning.
 
 const App = () => {
   const [sortBy, setSortBy] = useState("0");
@@ -29,8 +27,9 @@ const App = () => {
   };
 
   const remove = () => {
-    executeDeleteRequest("https://splitvajs.fly.dev/expenses");
-    setAddedItems([]);
+    fetch("https://splitvajs.fly.dev/expenses", {
+      method: "DELETE",
+    }).then((response) => setAddedItems([]));
   };
 
   const removeById = (id) => {

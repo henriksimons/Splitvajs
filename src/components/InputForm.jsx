@@ -37,7 +37,7 @@ const InputForm = ({ onFormSubmit }) => {
     <>
       <h2>Kostnadsformulär</h2>
       <div className="input-form">
-        <div className="container">
+        
           <div className="row"></div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
@@ -123,7 +123,7 @@ const InputForm = ({ onFormSubmit }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-16 mt-2 text-left">
+              <div className="col-6 mt-2">
                 <button type="submit" className="submit-btn mt-2">
                   Lägg till
                 </button>
@@ -131,7 +131,7 @@ const InputForm = ({ onFormSubmit }) => {
             </div>
           </form>
         </div>
-      </div>
+      
     </>
   );
 };
